@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="form-signup" id="signup">
+      <form method="POST" onsubmit="return p_check()" action="reg.html">
+    <div>
+    <h1 class="heading"> 
+    </span>SIGN UP</h1>
+    <br>
+    </div>
+
+        
+    <div class="feild-group">
+        <p id="fname" style="display: none;" class="alert alert-info">Only characters are allowed</p>
+        <input type="text" id="firstName" oninput="f_check()" class="form-control" placeholder="First name" required>
+        <p class="error-text">First name cannot be empty</p> 
+      </div>
+
+    <div class="feild-group">
+       <p id="lname" style="display: none;" class="alert alert-info">Only characters are allowed</p>
+       <input type="text" id="lastName" oninput="l_check()" class="form-control" placeholder="Last name" required>
+       <p class="error-text">Last name cannot be empty</p>
+     </div>
+
+    <div class="feild-group">
+       <p id="eAlert" style="display: none;" class="alert alert-info">Enter valid Email</p>
+        <input type="email" id="email" oninput="e_check()" class="form-control" placeholder="abc@example.com" required>
+        <p class="error-text">Email canot be empty</p>
+      </div>
+       
+    <div class="feild-group">
+       <p id="phone" style="display: none;" class="alert alert-info">Pls enter valid number</p>
+          <input id="text1" placeholder="998xxxxxxx" type="text" oninput="validate()"  maxlength="10" minlength="10" required>
+        <p class="error-text">Phone number cannot be empty</p>
+      </div> 
+      
+
+    <div class="feild-group">
+        <p id="pass" style="display: none;" class="alert alert-info">Password Incorrect</p>
+       <input type="password" id="password" class="form-control" minlength="6" maxlength="10" placeholder="Password" required>
+    </div>
+
+    <div class="feild-group">
+        <p id="cpass" style="display: none;" class="alert alert-info">Password mismatch</p>
+        <input type="password" id="confirmPassword" minlength="6"  maxlength="10"  class="form-control" placeholder="Confirm Password" required>
+      </div>
+    
+      <div class="wrapper">
+      <button type="submit" class="signup" value="submit" onsubmit="f_check(), l_check(), e_check(), validate()">SiGN UP</button>
+       </div>
+
+     </form>
+     
+    <script>
+        function f_check() {
+            let  fname = document.getElementById('firstName').value;
+            let patt1 = /[0-9]/g;
+
+            if(fname === " " || fname.match(patt1)) {
+                document.getElementById('fname').style.display = "block";
+                document.getElementById('firstName').value = "";
+                setTimeout(() => { 
+                    document.getElementById('fname').style.display = "none";
+                }, 3000)
+            }
+        }
+
+
+        function l_check() {
+    let  lname = document.getElementById('lastName').value;
+    let patt1 = /[0-9]/g;
+  
+    if(lname === " " || lname.match(patt1)) {
+        document.getElementById('lname').style.display = "block";
+        document.getElementById('lastName').value = "";
+        setTimeout(() => { 
+            document.getElementById('lname').style.display = "none";
+        }, 3000)
+    }
+  }
+
+
+  function e_check() {
+              let e = document.getElementById('email');
+              if(!e.checkValidity()) {
+                  document.getElementById('eAlert').style.display = "block";
+                  document.getElementById('eAlert').innerHTML = e.validationMessage;
+                  setTimeout(() => { 
+                      document.getElementById('eAlert').style.display = "none";
+                  }, 3000)
+              }
+          }
+
+   function validate()
+  {
+    var text = document.getElementById("text1").value;
+  
+    var regx = /^[7-9][0-9]{9}$/;
+    let ppatrn = /[a-zA-Z]/g;  
+    if(text === " " || text.match(ppatrn)|| test.match(regx)) {
+      document.getElementById('phone').style.display = "block";
+      document.getElementById('text1').value = "";
+      setTimeout(() => { 
+          document.getElementById('phone').style.display = "none";
+      }, 3000)
+    }
+  }
+
+        function p_check() {
+            let p = document.getElementById('password').value;
+            let cp = document.getElementById('confirmPassword').value;
+            if(p===cp) {
+                return true;
+
+            } else {
+                document.getElementById('pass').style.display = "block";
+                setTimeout(() => { 
+                    document.getElementById('pass').style.display = "none";
+                }, 3000)
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
